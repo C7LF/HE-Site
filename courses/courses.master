@@ -1,0 +1,18 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPages/Frontend.master" AutoEventWireup="true" CodeFile="courses.master.cs" Inherits="courses_courses" %>
+
+<%@ Register Src="~/Controls/Reviews_Form.ascx" TagPrefix="Wrox" TagName="Reviews_Form" %>
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" Runat="Server">
+
+    <asp:ContentPlaceHolder ID="cpMainContent" runat="server">
+    </asp:ContentPlaceHolder>
+    
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cpClientScript" Runat="Server">
+</asp:Content>
+

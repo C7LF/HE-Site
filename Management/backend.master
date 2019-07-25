@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="backend.master.cs" Inherits="Management_backend" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include Editor style. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.0/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="topSection">
+        <div class="container-fluid">
+            <div class="row">
+                        <div class="col-sm-4">
+                            <h1>CC Uni Centre | Site Management</h1>
+                        </div>
+                        <div class="col-sm-8">
+                            <nav class="navbar" role="navigation">
+                                <div class="container-fluid">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand visible-xs" href="#">Menu</a>
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                        <ul class="nav navbar-nav">
+                                            <asp:LoginView ID="LoginView1" runat="server">
+                                                <AnonymousTemplate>
+                                                    <li class="pull-right"><a href="/Login.aspx" class=" ddt1"><b><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign in</b></a></li>
+                                                </AnonymousTemplate>
+                                                <LoggedInTemplate>
+                                                    <li class="dropdown pull-right">
+                                                        <a href="#" class="ddt1 dropdown-toggle" data-toggle="dropdown"><b><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <asp:LoginName ID="LoginName1" runat="server" /> <span class="caret"></span></b></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="../profile.aspx">My Profile</a></li>
+                                                            <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/Default.aspx" /></li>
+                                                        </ul>
+                                                    </li>
+                                               </LoggedInTemplate>
+                                                <RoleGroups>
+                                                    <asp:RoleGroup Roles="Admin">
+                                                        <ContentTemplate>
+                                                    <li class="dropdown pull-right">
+                                                        <a href="#" class="ddt1 dropdown-toggle" data-toggle="dropdown"><b><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <asp:LoginName ID="LoginName1" runat="server" /> <span class="caret"></span></b></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="../Management/Default.aspx">Manage Site</a></li>
+                                                            <li><a href="../profile.aspx">My Profile</a></li>
+                                                            <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/Default.aspx" /></li>
+                                                        </ul>
+                                                    </li>
+                                                     </ContentTemplate>
+                                                    </asp:RoleGroup>
+                                                </RoleGroups>
+                                            </asp:LoginView>
+                                        </ul>              
+                                    </div>
+                                    <!-- /.navbar-collapse -->
+                                </div>
+                                <!-- /.container-fluid -->
+                            </nav>
+                        </div>
+                    </div>
+            </div>
+    </div>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 sidebarc">
+        <div class="sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Management/Default.aspx">Dashboard</asp:HyperLink>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Management/posts/allposts.aspx">Blog Posts</asp:HyperLink>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Management/courses/allcourse.aspx">Courses</asp:HyperLink>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="">Users</asp:HyperLink>
+                        </li>
+                   </ul>
+                </div>
+               
+            </div>
+            </div>
+            <div class="col-sm-10 mca">
+        <asp:ContentPlaceHolder id="MainManagementContrent" runat="server">
+        
+        </asp:ContentPlaceHolder>
+           </div>
+            </div>
+            </div>
+    </form>
+</body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+ 
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        $('textarea').froalaEditor({
+            charCounterCount: false
+        });
+
+    </script>
+</html>

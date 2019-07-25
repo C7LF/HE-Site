@@ -1,0 +1,272 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Frontend.master.cs" Inherits="MasterPages_Frontend" %>
+
+<%@ Register Src="~/Controls/Login_Form.ascx" TagPrefix="Wrox" TagName="Login_Form" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="/Scripts/modernizr-2.7.1.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Path="~/Scripts/WebForms/WebUIValidation.js" />
+            </Scripts>
+        </asp:ScriptManager>
+        <div id="PageWrapper">
+            <header>
+                <div class="topbar">
+                    <div class="container text-right">
+                        <span>Select a theme:</span>
+                        <asp:DropDownList ID="ThemeList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
+                            <asp:ListItem>Light</asp:ListItem>
+                            <asp:ListItem>Dark</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="mainNavbar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="#">
+                                <img src="../Images/HE-Logo.png" alt="higher education logo light" width="300" height="auto" /></a>
+                        </div>
+                        <div class="col-sm-8">
+                            <nav class="navbar navbar-default" role="navigation">
+                                <div class="container-fluid">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand visible-xs" href="#">Menu</a>
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="/">Home</a></li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Areas <span class="caret"></span></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="../allcourses.aspx">All Courses</a></li>
+                                                    <li><a href="../businness.aspx">Business</a></li>
+                                                    <li><a href="../construction.aspx">Construction</a></li>
+                                                    <li><a href="../digital-tech.aspx">Digital Technologies</a></li>
+                                                    <li><a href="../health-and-social.aspx">Health and Social</a></li>
+                                                    <li><a href="../mediac.aspx">Media</a></li>
+                                                    <li><a href="../public-services.aspx">Public Services</a></li>
+                                                    <li><a href="../sports.aspx">Sports</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="/blog.aspx">News</a></li>
+                                            <li><a href="../support.aspx">Support</a></li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social <span class="caret"></span></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="../social/chat.aspx">Discussion</a></li>
+                                                    <li><a href="../social/people.aspx">People</a></li>
+                                                </ul>
+                                                </li>
+                                            
+
+                                            <asp:LoginView ID="LoginView1" runat="server">
+                                                <AnonymousTemplate>
+                                                    <li class="pull-right"><a href="/Login.aspx" class=" ddt1"><b><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign in</b></a></li>
+                                                </AnonymousTemplate>
+                                                <LoggedInTemplate>
+                                                    <li class="dropdown pull-right">
+                                                        <a href="#" class="ddt1 dropdown-toggle" data-toggle="dropdown"><b><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <asp:LoginName ID="LoginName1" runat="server" /> <span class="caret"></span></b></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="../profile.aspx">My Profile</a></li>
+                                                            <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/Default.aspx" /></li>
+                                                        </ul>
+                                                    </li>
+                                               </LoggedInTemplate>
+                                                <RoleGroups>
+                                                    <asp:RoleGroup Roles="Admin">
+                                                        <ContentTemplate>
+                                                    <li class="dropdown pull-right">
+                                                        <a href="#" class="ddt1 dropdown-toggle" data-toggle="dropdown"><b><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <asp:LoginName ID="LoginName1" runat="server" /> <span class="caret"></span></b></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="../Management/Default.aspx">Manage Site</a></li>
+                                                            <li><a href="../profile.aspx">My Profile</a></li>
+                                                            <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/Default.aspx" /></li>
+                                                        </ul>
+                                                    </li>
+                                                     </ContentTemplate>
+                                                    </asp:RoleGroup>
+                                                </RoleGroups>
+                                            </asp:LoginView>
+                                        </ul>
+                                                
+
+                                    </div>
+                                    <!-- /.navbar-collapse -->
+                                </div>
+                                <!-- /.container-fluid -->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </header>
+            <section id="MainContent">
+                <asp:ContentPlaceHolder ID="cpMainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
+
+            <footer>
+                <div class="container">
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <img src="../Images/HE-Logo.png" width="250px" />
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="footerhead">Our Courses</p>
+                        <asp:Menu ID="Menu1" runat="server" DataSourceID="CourcesSitemap" StaticSubMenuIndent="16px"></asp:Menu>
+                        <asp:SiteMapDataSource ID="CourcesSitemap" runat="server" />
+                    </div>
+                    <div class="col-sm-3">
+                        <p class="footerhead">Useful Links</p>
+                        <a href="../Login.aspx">Login</a><br />
+                        <a href="../register">Register</a><br />
+                        <a href="../profile">My Profile</a><br />
+                        <a href="http://www.chesterfield.ac.uk">Chesterfield College</a>
+                    </div>
+                     <div class="col-sm-3">
+                        <p class="footerhead">Contact</p>
+                        <strong>Main Switchboard</strong>
+                         <p>01246 500 500</p>
+                         <br />
+                         <p>Chesterfield College,<br />
+                            Infirmary Road<br />
+                            Chesterfield
+                         </p>
+                    </div>
+                        </div>
+                </div>
+            </footer>
+        
+        <asp:ContentPlaceHolder ID="cpClientScript" runat="server">
+        </asp:ContentPlaceHolder>
+         </div>
+        </form>
+    </body>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="../Scripts/parallax.min.js"></script>
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+    <script>
+        // $('.banner').parallax({ imageSrc: '../Images/server-room.jpeg' });
+        $(function () {
+            var availableTags = [
+              "BSc in Computing Software Development (top up)",
+              "BSc in Computing Networks (top up)",
+              "FdSc in Computing Software Development",
+              "FdSc in Computing Networks",
+              "HND Creative Media Production",
+              "Other"
+            ];
+            $("#cpMainContent_tags").autocomplete({
+                source: availableTags
+            });
+        });
+
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                var scrollPos = $(window).scrollTop(),
+                navbar = $('.mainNavbar');
+                
+                if (scrollPos > 25) {
+                    navbar.addClass('althead');
+                    $('body').css('padding-top', '50px');
+
+                } else {
+                    navbar.removeClass('althead');
+                    $('body').css('padding-top', '0px');
+
+                }
+            });
+
+
+            var gallery = $(".loginarea");
+            var contents = gallery.find("tbody, tr, td").contents().detach();
+            gallery.find("table").remove();
+            gallery.append(contents);
+
+            $('#editdetails').click(function () {
+                $('.edit').show();
+                $('.noedit').hide();
+
+            })
+            $('.saveChanges').click(function () {
+                $('.edit').hide();
+                $('.noedit').show();
+
+            })
+
+            $('.saveChanges2').click(function () {
+                $('.edit2').hide();
+                $('.noedit2').show();
+
+            })
+
+            $('#editdetails2').click(function () {
+                $('.edit2').show();
+                $('.noedit2').hide();
+
+            })
+
+            $('.saveChanges3').click(function () {
+                $('.edit3').hide();
+                $('.noedit3').show();
+
+            })
+
+            $('#editdetails3').click(function () {
+                $('.edit3').show();
+                $('.noedit3').hide();
+
+            })
+
+            $(".DoB").datepicker({
+                defaultDate: "-25y",
+                dateFormat: "dd/mm/yy",
+                yearRange: "c-80:c+40",
+                inline: true,
+                showAnim: 'fadeIn',
+                changeMonth: true,
+                changeYear: true,
+                minDate: "-120y",
+                maxDate: "-18y",
+            });
+        });
+
+
+    </script>
+    <script src="../Scripts/jquery.signalR-2.2.3.js"></script>
+    <!--Reference the autogenerated SignalR hub script. -->
+    <script src="../signalr/hubs"></script>
+    <script src="../Scripts/jquery.truncate.js"></script>
+    <!--Add script to update the page and send messages.--> 
+</html>
